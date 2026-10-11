@@ -18,17 +18,19 @@ class HomePage extends StatelessWidget {
           child:Text("Home"),
         ),
       ),
-      body: const Center(child:
-     Text(
-          "Home Page",
-          selectionColor: Colors.black,
-          style: TextStyle(
-            fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.blue,
-          ),
-      ),
-      ),
-    );
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(children: [
+           ClipRRect(
+             borderRadius: BorderRadius.circular(24.0),
+             child:Image.asset(
+                 'assets/images/food_web_banner.jpg',
+                height: 200,
+               fit: BoxFit.cover,
+             ),
+           ),
+        ],),
+      )
+      );
   }
 }
