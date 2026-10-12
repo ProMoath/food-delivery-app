@@ -29,6 +29,142 @@ class HomePage extends StatelessWidget {
                fit: BoxFit.cover,
              ),
            ),
+          const SizedBox(height: 30),
+          Expanded(
+              child: GridView(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                  ),
+                children: [
+                Container(
+                    decoration: BoxDecoration(
+                    color: Colors.white
+                  ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Placeholder(
+                            fallbackHeight: 80,
+                          ),
+                          SizedBox(height: 6.0),
+                          Text('Burger',
+                          style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.w600
+                          ),
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            '5\$',
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight:FontWeight.bold,
+                                color:Colors.amber
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                ),
+                Container(
+                    decoration: BoxDecoration(
+                    color: Colors.white
+                  ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Placeholder(
+                            fallbackHeight: 80,
+                          ),
+                          SizedBox(height: 6.0),
+                          Text('Burger',
+                          style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.w600
+                          ),
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            '5\$',
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight:FontWeight.bold,
+                                color:Colors.amber
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                ),
+                Container(
+                    decoration: BoxDecoration(
+                    color: Colors.white
+                  ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Placeholder(
+                            fallbackHeight: 80,
+                          ),
+                          SizedBox(height: 6.0),
+                          Text('Burger',
+                          style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.w600
+                          ),
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            '5\$',
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight:FontWeight.bold,
+                                color:Colors.amber
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                ),
+                Container(
+                    decoration: BoxDecoration(
+                    color: Colors.white
+                  ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Placeholder(
+                            fallbackHeight: 80,
+                          ),
+                          SizedBox(height: 6.0),
+                          Text('Burger',
+                          style: TextStyle(
+                              fontSize: 19,
+                              fontWeight: FontWeight.w600
+                          ),
+                          ),
+                          SizedBox(height: 4.0),
+                          Text(
+                            '5\$',
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight:FontWeight.bold,
+                                color:Colors.amber
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                ),
+                ],
+              ),
+          )
         ],),
       )
       );
