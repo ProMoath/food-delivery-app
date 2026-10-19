@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/models/food_item.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -31,142 +32,57 @@ class HomePage extends StatelessWidget {
            ),
           const SizedBox(height: 30),
           Expanded(
-              child: GridView(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
+              child: GridView.builder(
+                itemCount:food.length ,
+                gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 20,
                   ),
-                children: [
-                Container(
-                    decoration: BoxDecoration(
-                    color: Colors.white
-                  ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          Placeholder(
-                            fallbackHeight: 80,
-                          ),
-                          SizedBox(height: 6.0),
-                          Text('Burger',
-                          style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w600
-                          ),
-                          ),
-                          SizedBox(height: 4.0),
-                          Text(
-                            '5\$',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight:FontWeight.bold,
-                                color:Colors.amber
-                            ),
-                          )
-                        ],
-                      ),
+                itemBuilder: (context,index) =>
+                 ClipRRect(
+                   borderRadius: BorderRadius.circular(10),
+                   child: Container(
+                      decoration:const BoxDecoration(
+                      color: Colors.blueGrey
                     ),
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                    color: Colors.white
-                  ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          Placeholder(
-                            fallbackHeight: 80,
-                          ),
-                          SizedBox(height: 6.0),
-                          Text('Burger',
-                          style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w600
-                          ),
-                          ),
-                          SizedBox(height: 4.0),
-                          Text(
-                            '5\$',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight:FontWeight.bold,
-                                color:Colors.amber
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          children: [
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: food[index].isNetwork
+                                 ?Image.network(food[index].imgUrl,height: 82,fit: BoxFit.cover,)
+                                 :Image.asset(food[index].imgUrl,height: 82,fit: BoxFit.cover,)
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                    color: Colors.white
-                  ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          Placeholder(
-                            fallbackHeight: 80,
-                          ),
-                          SizedBox(height: 6.0),
-                          Text('Burger',
-                          style: TextStyle(
-                              fontSize: 19,
+                            const SizedBox(height: 6.0),
+                            Text(
+                              food[index].name,
+                              style:const TextStyle(
+                              fontSize: 18,
                               fontWeight: FontWeight.w600
-                          ),
-                          ),
-                          SizedBox(height: 4.0),
-                          Text(
-                            '5\$',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight:FontWeight.bold,
-                                color:Colors.amber
                             ),
-                          )
-                        ],
+                            ),
+                            const SizedBox(height: 4.0),
+                            Text(
+                              '${food[index].price}\$',
+                              style:const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight:FontWeight.bold,
+                                  color:Colors.amber
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                ),
-                Container(
-                    decoration: BoxDecoration(
-                    color: Colors.white
+                     ),
                   ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: [
-                          Placeholder(
-                            fallbackHeight: 80,
-                          ),
-                          SizedBox(height: 6.0),
-                          Text('Burger',
-                          style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w600
-                          ),
-                          ),
-                          SizedBox(height: 4.0),
-                          Text(
-                            '5\$',
-                            style: TextStyle(
-                                fontSize: 17,
-                                fontWeight:FontWeight.bold,
-                                color:Colors.amber
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
                 ),
-                ],
-              ),
-          )
-        ],),
-      )
+              )
+            ],
+          ),
+        )
       );
   }
 }
