@@ -8,20 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title:const Text("Food Delivery"),
-        backgroundColor: Color.fromRGBO(255, 15, 10,0.8),
-        foregroundColor: Colors.white,
-        elevation: 2,
-      ),
-      drawer:const Drawer(
-        child: Center(
-          child:Text("Home"),
-        ),
-      ),
-      body: Padding(
+    return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(children: [
            ClipRRect(
@@ -46,7 +33,6 @@ class HomePage extends StatelessWidget {
           ),
             ],
           ),
-        )
-      );
+        );
   }
 }

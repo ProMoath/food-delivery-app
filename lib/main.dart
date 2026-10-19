@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/pages/home_page.dart';
+import 'package:food_delivery/pages/bottom_navbar.dart';
 
 void main(){
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.amber,
       ),
-      home: HomePage(),
+      home: BottomNavbar(),
     );
   }
 }
