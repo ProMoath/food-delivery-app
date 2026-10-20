@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(children: [
@@ -15,11 +16,11 @@ class HomePage extends StatelessWidget {
              borderRadius: BorderRadius.circular(24.0),
              child:Image.asset(
                  'assets/images/food_web_banner.jpg',
-                height: 200,
+               height: size.height * 0.2,
                fit: BoxFit.cover,
              ),
            ),
-          const SizedBox(height: 30),
+          SizedBox(height: size.height * 0.03),
           Expanded(
               child: GridView.builder(
               itemCount:food.length ,
