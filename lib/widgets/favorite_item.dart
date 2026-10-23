@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
-import '../models/food_item.dart';
+import '../pages/favorite_page.dart';
 
 class FavoriteItem extends StatelessWidget {
-  final FoodItem foodItem;
+  final int foodIndex;
+  final VoidCallback onRemove;
 
-  const FavoriteItem({super.key, required this.foodItem});
+  const FavoriteItem({
+    super.key,
+    required this.foodIndex,
+    required this.onRemove,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final item = favoriteFood[foodIndex];
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadiusGeometry.circular(16),
@@ -17,9 +23,9 @@ class FavoriteItem extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            foodItem.isNetwork
+            item.isNetwork
                 ? Image.network(
-                    foodItem.imgUrl,
+                    item.imgUrl,
                     height: 70,
                     fit: BoxFit.cover,
                     errorBuilder: (context, error, stackTrace) {
@@ -34,14 +40,19 @@ class FavoriteItem extends StatelessWidget {
                       );
                     },
                   )
-                : Image.asset(foodItem.imgUrl, height: 70,width: 100, fit: BoxFit.cover),
+                : Image.asset(
+                    item.imgUrl,
+                    height: 70,
+                    width: 100,
+                    fit: BoxFit.cover,
+                  ),
             const SizedBox(width: 8.0),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    foodItem.name,
+                    item.name,
                     style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -49,7 +60,7 @@ class FavoriteItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 8.0),
                   Text(
-                    '${foodItem.price} \$',
+                    '${item.price} \$',
                     style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
@@ -59,7 +70,10 @@ class FavoriteItem extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(Icons.favorite),
+            IconButton(
+              onPressed: onRemove,
+              icon: Icon(Icons.favorite, color: Colors.redAccent),
+            ),
           ],
         ),
       ),

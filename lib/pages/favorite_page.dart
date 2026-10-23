@@ -1,26 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery/models/food_item.dart';
 import 'package:food_delivery/widgets/favorite_item.dart';
 
-class FavoritePage extends StatelessWidget {
+import '../models/food_item.dart';
+
+List<FoodItem> get favoriteFood =>
+    food.where((foodItem) => foodItem.isFavorite).toList();
+
+class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
 
   @override
+  State<FavoritePage> createState() => _FavoritePageState();
+}
+
+class _FavoritePageState extends State<FavoritePage> {
+  void removeFavorite(int index) {
+    final targetedItem = favoriteFood[index];
+    int targetedIndex = food.indexOf(targetedItem);
+    setState(() {
+      food[targetedIndex] = food[targetedIndex].copyWith(isFavorite: false);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final favoriteFood = food.where((foodItem) => foodItem.isFavorite);
+    if (favoriteFood.isEmpty) {
+      return Center(
+        child: (Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "No Favorite Items",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w600,
+                color: Colors.amber,
+              ),
+            ),
+          ],
+        )),
+      );
+    }
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: SingleChildScrollView(
-        /*
-         ListView.builder(
-          itemCount: food.length,
-          itemBuilder: (context,index)=>FavoriteItem(foodItem: food[index])
-         */
-        child: Column(
-          children: favoriteFood
-              .where((foodItem) => foodItem.isFavorite)
-              .map((foodItem) => FavoriteItem(foodItem: foodItem))
-              .toList(),
+      child: ListView.builder(
+        itemCount: favoriteFood.length,
+        itemBuilder: (context, index) => FavoriteItem(
+          foodIndex: index,
+          onRemove: () => removeFavorite(index),
         ),
       ),
     );

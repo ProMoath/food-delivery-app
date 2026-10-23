@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+
 import '../models/food_item.dart';
 
 class FoodGridItem extends StatefulWidget {
-  final FoodItem foodItem;
+  final int foodIndex;
 
-  const FoodGridItem({super.key, required this.foodItem});
+  const FoodGridItem({super.key, required this.foodIndex});
 
   @override
   State<FoodGridItem> createState() => _FoodGridItemState();
 }
 
 class _FoodGridItemState extends State<FoodGridItem> {
-  bool isFav = false;
-
   @override
   Widget build(BuildContext context) {
+    var item = food[widget.foodIndex];
     return Container(
       decoration: BoxDecoration(
         color: Colors.blueGrey,
@@ -26,9 +26,9 @@ class _FoodGridItemState extends State<FoodGridItem> {
           children: [
             Stack(
               children: [
-                widget.foodItem.isNetwork
+                item.isNetwork
                     ? Image.network(
-                        widget.foodItem.imgUrl,
+                        item.imgUrl,
                         height: 82,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
@@ -43,11 +43,7 @@ class _FoodGridItemState extends State<FoodGridItem> {
                           );
                         },
                       )
-                    : Image.asset(
-                        widget.foodItem.imgUrl,
-                        height: 82,
-                        fit: BoxFit.cover,
-                      ),
+                    : Image.asset(item.imgUrl, height: 82, fit: BoxFit.cover),
                 Align(
                   alignment: Alignment.topRight,
                   child: Container(
@@ -59,10 +55,12 @@ class _FoodGridItemState extends State<FoodGridItem> {
                     ),
                     child: InkWell(
                       onTap: () => setState(() {
-                        isFav =!isFav;
+                        item = item.copyWith(isFavorite: !item.isFavorite);
                       }),
                       child: Icon(
-                        isFav? Icons.favorite : Icons.favorite_border,
+                        item.isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border,
                         color: Colors.redAccent,
                       ),
                     ),
@@ -72,12 +70,12 @@ class _FoodGridItemState extends State<FoodGridItem> {
             ),
             const SizedBox(height: 6.0),
             Text(
-              widget.foodItem.name,
+              item.name,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 4.0),
             Text(
-              '${widget.foodItem.price}\$',
+              '${item.price}\$',
               style: const TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.bold,

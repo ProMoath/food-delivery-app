@@ -12,6 +12,21 @@ class FoodItem {
     this.isNetwork = false,
     this.isFavorite = false,
   });
+
+  FoodItem copyWith({
+    String? name,
+    String? imgUrl,
+    double? price,
+    bool? isNetwork,
+    bool? isFavorite,
+  }) {
+    return FoodItem(
+      name: name ?? this.name,
+      imgUrl: imgUrl ?? this.imgUrl,
+      price: price ?? this.price,
+      isFavorite: isFavorite ?? this.isFavorite,
+    );
+  }
 }
 
 List<FoodItem> food = [
@@ -27,7 +42,6 @@ List<FoodItem> food = [
     name: 'Beef Burger',
     imgUrl: 'assets/images/beef burger.png',
     price: 10.5,
-    isFavorite: true,
   ),
 
   FoodItem(
@@ -48,7 +62,6 @@ List<FoodItem> food = [
     name: 'Chicken Pizza',
     imgUrl: 'assets/images/chickenPizza.png',
     price: 13,
-    isFavorite: true,
   ),
 
   FoodItem(
@@ -59,10 +72,5 @@ List<FoodItem> food = [
     isNetwork: true,
   ),
 
-  FoodItem(
-    name: 'Pasta',
-    imgUrl: 'assets/images/Pasta.png',
-    price: 10,
-    isFavorite: true,
-  ),
+  FoodItem(name: 'Pasta', imgUrl: 'assets/images/Pasta.png', price: 10),
 ];
